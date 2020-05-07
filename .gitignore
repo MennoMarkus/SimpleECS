@@ -1,32 +1,38 @@
-# Prerequisites
-*.d
+# Build folders
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+# Visual Studio generated folders
+.vs/
+Generated\ Files/
 
-# Precompiled Headers
-*.gch
-*.pch
+# Visual C++ cache folder/files
+ipch/
+_NCrunch*/
+packages/
+*.suo
+*.user
+*.aps
+*.ncb
+*.opendb
+*.opensdf
+*.sdf
+*.cachefile
+*.VC.db
+*.VC.VC.opendb
+*.ncrunch*
+*.nupkg
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+# Visual Studio profiler
+*.psess
+*.vsp
+*.vspx
+*.sap
 
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
+# Visual Studio cache files
+# files ending in .cache can be ignored
+*.[Cc]ache
+# but keep track of directories ending in .cache
+!?*.[Cc]ache/
