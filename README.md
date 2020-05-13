@@ -31,6 +31,8 @@ struct Velocity
 	float x, y;
 };
 
+struct Enemy {};
+
 // -----Systems-----
 class GravitySystem : public SystemBase<Velocity>
 {
@@ -74,7 +76,11 @@ public:
 	//** Example: Override update to manually iterate over all entities that match this system.
 	void update() override
 	{
-		std::cout << "Counted " << getEntities().size() << " total amount of entities." << std::endl;
+		//** Example: Query entities.
+		EntityArchetype enemyQuery = getEntityManager()->getArchetype<Enemy>();
+		const std::set<Entity>& enemyEntities = getEntityManager()->getEntityQuery(enemyQuery);
+
+		std::cout << "Counted " << getEntities().size() << " total amount of entities. Of which " << enemyEntities.size() << " are enemies." << std::endl;
 	}
 };
 
@@ -82,6 +88,9 @@ public:
 int main(int argc, char** argv)
 {
 	EntityManager entityManager;
+
+	//** Example: register a component.
+	entityManager.registerComponent<Enemy>();
 
 	//** Example: register a system.
 	// Systems are run in the order in that they were registered.
@@ -117,6 +126,10 @@ int main(int argc, char** argv)
 			((float)rand() / (float)RAND_MAX) * 100.0f, 
 			((float)rand() / (float)RAND_MAX) * 100.0f 
 		});
+
+		// Make 50% enemies.
+		if (i % 2 == 0)
+			entityManager.addComponent<Enemy>(entity);
 	}
 
 	//** Example: Create/destroy entities and components.
