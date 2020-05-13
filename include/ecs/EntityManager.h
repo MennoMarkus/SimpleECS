@@ -6,6 +6,7 @@
 
 #include "ecs/Entity.h"
 #include "ecs/ComponentDataArray.h"
+#include "ecs/EntityQuery.h"
 
 class ISystemBase;
 
@@ -27,6 +28,9 @@ private:
 	// Systems
 	std::vector<std::unique_ptr<ISystemBase>> m_systems;
 
+	// Queries
+	std::unordered_map<EntityArchetype, std::set<Entity>> m_querries;
+
 public:
 	EntityManager();
 	void update();
@@ -39,6 +43,11 @@ public:
 	void destroyEntity(Entity entity);
 
 	EntityArchetype getArchetype(Entity entity) const;
+	template<class ...Ts> EntityArchetype getArchetype() const;
+
+	// It's faster to cache the EntityArchetype using getArchetype<Ts..>() and use getEntityQuery(EntityArchetype archetype).
+	template<class ...Ts> const std::set<Entity>& getEntityQuery();
+	const std::set<Entity>& getEntityQuery(EntityArchetype archetype);
 
 	template<typename T> void reserveComponentCount(size_t reserveSize = 256);
 	template<typename T> ComponentType getComponentType() const;

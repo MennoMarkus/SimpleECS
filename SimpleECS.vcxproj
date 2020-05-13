@@ -161,6 +161,7 @@
     <ClInclude Include="include\ecs\ComponentDataArray.h" />
     <ClInclude Include="include\ecs\Entity.h" />
     <ClInclude Include="include\ecs\EntityManager.h" />
+    <ClInclude Include="include\ecs\EntityQuery.h" />
     <ClInclude Include="include\ecs\SystemBase.h" />
   </ItemGroup>
   <ItemGroup>
